@@ -1,9 +1,16 @@
 import React from 'react';
+import { ThemeProvider } from 'styled-components';
 
-// import { Container } from './styles';
+import GlobalStyle from './styles/GlobalStyle';
+import Theme from './styles/Theme';
 
 const App: React.FC = () => {
-  return <div>Teste Arvore</div>;
+  return (
+    <ThemeProvider theme={Theme}>
+      <GlobalStyle />
+      <span>Teste Àrvore</span>
+    </ThemeProvider>
+  );
 };
 
 export default App;
