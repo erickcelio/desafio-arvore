@@ -1,7 +1,8 @@
-interface dayObject {
+export interface dayObject {
   day: string;
   year: number;
   dayNumberInWeek: number;
+  date: string;
   month: number;
   monthName: string;
 }
@@ -20,9 +21,10 @@ function daysInMonth(month: number, year: number): dayObject[] {
     const newDate = new Date(year, month - 1, day + 1);
 
     return {
-      day: newDate.toLocaleDateString('us', { day: '2-digit' }),
+      day: newDate.toLocaleDateString('en-US', { day: '2-digit' }),
       dayNumberInWeek: newDate.getDay(),
       month,
+      date: newDate.toISOString().slice(0, 10),
       monthName,
       year,
     };

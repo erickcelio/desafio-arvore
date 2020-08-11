@@ -1,15 +1,43 @@
 import styled, { css } from 'styled-components';
 
-export const Container = styled.div`
-  width: 20px;
-  height: 20px;
+export const Container = styled.div<{ contributions: number }>`
+  width: 10px;
+  height: 10px;
   display: flex;
   position: relative;
   justify-content: center;
-  background-color: ${props => props.theme.colors.display[100]};
+  ${({ theme, contributions }) => {
+    if (contributions > 0 && contributions < 11) {
+      return css`
+        background-color: ${theme.colors.primary[100]};
+      `;
+    }
+
+    if (contributions > 10 && contributions < 21) {
+      return css`
+        background-color: ${theme.colors.primary[200]};
+      `;
+    }
+
+    if (contributions > 20 && contributions < 31) {
+      return css`
+        background-color: ${theme.colors.primary[300]};
+      `;
+    }
+
+    if (contributions > 30) {
+      return css`
+        background-color: ${theme.colors.primary[400]};
+      `;
+    }
+
+    return css`
+      background-color: ${theme.colors.primary[0]};
+    `;
+  }};
 
   & + & {
-    margin-top: 4px;
+    margin-top: 2px;
   }
 `;
 
@@ -21,7 +49,7 @@ export const DayInfo = styled.div<IDayInfo>`
   z-index: 1;
   color: white;
   padding: 8px;
-  bottom: 25px;
+  bottom: 15px;
   display: none;
   font-size: 14px;
   position: absolute;

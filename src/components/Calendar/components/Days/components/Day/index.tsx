@@ -20,8 +20,9 @@ const Day: React.FC<IDay> = ({ day, month, year, contributions }) => {
     <Container
       onMouseLeave={handleOnMouseLeave}
       onMouseEnter={handleOnMouseEnter}
+      contributions={contributions}
     >
-      <DayInfo show={showInfo}>
+      <DayInfo onMouseEnter={handleOnMouseLeave} show={showInfo}>
         {contributions || 'No'} contributions on {month} {day}, {year}
       </DayInfo>
     </Container>
