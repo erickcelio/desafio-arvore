@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { ThemeProvider } from 'styled-components';
 
-import GlobalStyle from './styles/GlobalStyle';
 import Theme from './styles/Theme';
+import GlobalStyle from './styles/GlobalStyle';
 import Calendar, { IContribution } from './components/Calendar';
 import { getContributions } from './services/contributions';
+import { SELECTED_YEAR } from './constants';
 
 const App: React.FC = () => {
   const [contributions, setContributions] = useState<IContribution[]>([]);
@@ -20,7 +21,7 @@ const App: React.FC = () => {
   return (
     <ThemeProvider theme={Theme}>
       <GlobalStyle />
-      <Calendar contributions={contributions} year={2017} />
+      <Calendar contributions={contributions} year={SELECTED_YEAR} />
     </ThemeProvider>
   );
 };

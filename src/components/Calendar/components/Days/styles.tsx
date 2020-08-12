@@ -41,7 +41,9 @@ export const InformationsContainer = styled.div`
   justify-content: space-between;
 
   a {
+    color: #1064de;
     font-size: 12px;
     margin-left: 8px;
+    text-decoration: none;
   }
 `;

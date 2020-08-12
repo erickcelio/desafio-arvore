@@ -12,7 +12,7 @@ interface monthAndYear {
   year: number;
 }
 
-function daysInMonth(month: number, year: number): dayObject[] {
+const daysInMonth = (month: number, year: number): dayObject[] => {
   const date = new Date(year, month, 0);
 
   const monthName = date.toLocaleDateString('en-US', { month: 'short' });
@@ -31,16 +31,15 @@ function daysInMonth(month: number, year: number): dayObject[] {
   });
 
   return days;
-}
+};
 
-function daysInMonthAndYear(monthAndYear: monthAndYear[]): dayObject[] {
-  return monthAndYear.reduce<dayObject[]>(
+const daysInMonthAndYear = (monthAndYear: monthAndYear[]): dayObject[] =>
+  monthAndYear.reduce<dayObject[]>(
     (acc, { month, year }) => [...acc, ...daysInMonth(month, year)],
     [],
   );
-}
 
-function getDaysInYear(year: number) {
+const getDaysInYear = (year: number) => {
   const monthsAndYear = new Array(new Date(year).getMonth() + 1)
     .fill(null)
     .map((_, month) => ({
@@ -49,16 +48,16 @@ function getDaysInYear(year: number) {
     }));
 
   return daysInMonthAndYear(monthsAndYear);
-}
+};
 
-function getDaysInYears(years: number[]) {
-  return years.reduce<dayObject[]>((acc, year) => {
-    return [...acc, ...getDaysInYear(year)];
-  }, []);
-}
+const getDaysInYears = (years: number[]) =>
+  years.reduce<dayObject[]>(
+    (acc, year) => [...acc, ...getDaysInYear(year)],
+    [],
+  );
 
-function splitDaysInWeeks(days: dayObject[]): dayObject[][] {
-  return days.reduce<dayObject[][]>((acc, day) => {
+const splitDaysInWeeks = (days: dayObject[]): dayObject[][] =>
+  days.reduce<dayObject[][]>((acc, day) => {
     if (day.dayNumberInWeek === 0 || !acc[acc.length - 1]) {
       return [...acc, [day]];
     }
@@ -67,7 +66,6 @@ function splitDaysInWeeks(days: dayObject[]): dayObject[][] {
 
     return acc;
   }, []);
-}
 
 export function getWeekDaysFromYears(
   years: number[],

@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-one-expression-per-line */
 import React, { useCallback, useState } from 'react';
 
-import { Container, DayInfo } from './styles';
+import { Container, DayInfo, Contribution } from './styles';
 
 interface IDay {
   day: string | number;
@@ -17,14 +17,15 @@ const Day: React.FC<IDay> = ({ day, month, year, contributions }) => {
   const handleOnMouseLeave = useCallback(() => setShowInfo(false), []);
 
   return (
-    <Container
-      onMouseLeave={handleOnMouseLeave}
-      onMouseEnter={handleOnMouseEnter}
-      contributions={contributions}
-    >
-      <DayInfo onMouseEnter={handleOnMouseLeave} show={showInfo}>
+    <Container>
+      <DayInfo show={showInfo}>
         {contributions || 'No'} contributions on {month} {day}, {year}
       </DayInfo>
+      <Contribution
+        contributions={contributions}
+        onMouseLeave={handleOnMouseLeave}
+        onMouseEnter={handleOnMouseEnter}
+      />
     </Container>
   );
 };

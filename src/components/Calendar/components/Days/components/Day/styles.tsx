@@ -1,11 +1,9 @@
 import styled, { css } from 'styled-components';
 
-export const Container = styled.div<{ contributions: number }>`
+export const Contribution = styled.div<{ contributions: number }>`
   width: 10px;
   height: 10px;
-  display: flex;
-  position: relative;
-  justify-content: center;
+
   ${({ theme, contributions }) => {
     if (contributions > 0 && contributions < 11) {
       return css`
@@ -35,6 +33,12 @@ export const Container = styled.div<{ contributions: number }>`
       background-color: ${theme.colors.primary[0]};
     `;
   }};
+`;
+
+export const Container = styled.div`
+  display: flex;
+  position: relative;
+  justify-content: center;
 
   & + & {
     margin-top: 2px;
@@ -69,8 +73,8 @@ export const DayInfo = styled.div<IDayInfo>`
     width: 0;
     height: 0;
     content: '';
-    position: absolute;
     bottom: -5px;
+    position: absolute;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
 

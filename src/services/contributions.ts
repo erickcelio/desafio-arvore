@@ -5,3 +5,15 @@ export const getContributions = async (): Promise<IContribution[]> => {
 
   return response.json();
 };
+
+export const countContributions = (
+  contributions: IContribution[],
+  year: number,
+): number => {
+  return contributions.reduce<number>((acc, contribution) => {
+    const [contributionYear] = contribution.date.split('-');
+    return parseInt(contributionYear, 10) === year
+      ? acc + contribution.count
+      : acc;
+  }, 0);
+};
